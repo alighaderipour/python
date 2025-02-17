@@ -1,5 +1,6 @@
 print('Welcome To Bank Management Project')
 from register import *
+print(__name__)
 
 while True:
     try:

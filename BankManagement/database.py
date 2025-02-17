@@ -2,18 +2,20 @@
 import mysql.connector as sql
 
 mydb = sql.connect(
-    host = "localhost",
-    user = "root",
-    password = "Aa@123456",
-    database = "Bank"
+    host="localhost",
+    user="root",
+    password="Aa@123456",
+    database="bank"
 )
 
 cursor = mydb.cursor()
+
 
 def db_query(str):
     cursor.execute(str)
     result = cursor.fetchall()
     return result
+
 
 def create_customer_table():
     cursor.execute('''
@@ -26,10 +28,16 @@ def create_customer_table():
     account_number integer,
     status boolean
     )
-
     ''')
+
 
 mydb.commit()
 
-if __name__ == "__main__":
-    create_customer_table()
+if mydb.is_connected():
+    print("Successfully connected to the database.")
+else:
+    print("Failed to connect to the database.")
+
+
+create_customer_table()
+
